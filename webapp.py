@@ -39,9 +39,18 @@ def inject_logged_in():
     
 @app.route('/')
 def home():
-    
     return render_template('home.html')
     
+    
+@app.route('/login')
+def login():   
+    return github.authorize(callback=url_for('authorized', _external=True, _scheme='https'))
+    
+@app.route('/logout')
+def logout():
+    session.clear()
+    return render_template('home.html', message='You were logged out')
+
 @github.tokengetter #runs automatically. needed to confirm logged in
 def get_github_oauth_token():
     return session['github_token']
