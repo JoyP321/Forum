@@ -49,7 +49,33 @@ def login():
 @app.route('/logout')
 def logout():
     session.clear()
-    return render_template('home.html', message='You were logged out')
+    return render_template('home.html')
+
+    
+@app.route('/login/authorized')#the route should match the callback URL registered with the OAuth provider
+def authorized():
+    resp = github.authorized_response()
+    if resp is None:
+        session.clear()
+        message = 'Access denied: reason=' + request.args['error'] + ' error=' + request.args['error_description'] + ' full=' + pprint.pformat(request.args)      
+    else:
+        try:
+            session['github_token'] = (resp['access_token'], '')
+            session['user_data'] = github.get('user').data
+            if session['user_data']['public_repos'] >10:
+                message = 'you were successfully logged in as ' + session['user_data']['login'] +'.'
+                global validUserLog
+                if session['user_data']['login'] not in validUserLog:
+                    validUserLog.append(session['user_data']['login'])
+            else:
+                message = 'you are not qualified to view the very secret data, but you may log in'
+                global notValidUserLog
+                if session['user_data']['login'] not in notValidUserLog:
+                    notValidUserLog.append(session['user_data']['login'])
+        except Exception as inst:
+            session.clear()
+            message = "So sorry, an error has occured. You have not logged in."
+    return render_template('home.html')
 
 @github.tokengetter #runs automatically. needed to confirm logged in
 def get_github_oauth_token():
