@@ -1,16 +1,21 @@
 from flask import Flask, redirect, url_for, session, request, jsonify
 from flask_oauthlib.client import OAuth
 from flask import render_template
-
-import pprint
+import pymongo
 import os
+import sys
+import pprint
+
 
 app = Flask(__name__)
 
 app.debug = True 
 
-validUserLog = []
-notValidUserLog = []
+connection_string = os.environ["MONGO_CONNECTION_STRING"]
+db_name = os.environ["MONGO_DBNAME"]
+client = pymongo.MongoClient(connection_string)
+db = client['testdb']
+collection = db['testData']
 
 app.secret_key = os.environ['SECRET_KEY'] 
 oauth = OAuth(app)
@@ -34,6 +39,7 @@ def inject_logged_in():
     
 @app.route('/')
 def home():
+    
     return render_template('home.html')
     
 @github.tokengetter #runs automatically. needed to confirm logged in
