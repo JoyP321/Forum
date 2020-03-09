@@ -38,7 +38,7 @@ def inject_logged_in():
     
 @app.route('/')
 def home():
-    return render_template('home.html', threads = Markup("<p> thread23 </p>"))
+    return render_template('home.html', threads = get_threads())
     
 @app.route('/login')
 def login():   
