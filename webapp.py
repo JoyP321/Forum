@@ -62,16 +62,11 @@ def authorized():
         try:
             session['github_token'] = (resp['access_token'], '')
             session['user_data'] = github.get('user').data
+            print(session['user_data']['login'])
             if session['user_data']['public_repos'] >10:
                 message = 'you were successfully logged in as ' + session['user_data']['login'] +'.'
-                global validUserLog
-                if session['user_data']['login'] not in validUserLog:
-                    validUserLog.append(session['user_data']['login'])
             else:
                 message = 'you are not qualified to view the very secret data, but you may log in'
-                global notValidUserLog
-                if session['user_data']['login'] not in notValidUserLog:
-                    notValidUserLog.append(session['user_data']['login'])
         except Exception as inst:
             session.clear()
             message = "So sorry, an error has occured. You have not logged in."
