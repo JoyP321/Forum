@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for, session, request, jsonify
 from flask_oauthlib.client import OAuth
 from flask import render_template
-import pymongo
+import pymongo, Markup
 import os
 import sys
 import pprint
@@ -14,8 +14,7 @@ app.debug = True
 connection_string = os.environ["MONGO_CONNECTION_STRING"]
 db_name = os.environ["MONGO_DBNAME"]
 client = pymongo.MongoClient(connection_string)
-db = client['testdb']
-collection = db['testData']
+db = client['ForumData']
 
 app.secret_key = os.environ['SECRET_KEY'] 
 oauth = OAuth(app)
@@ -39,7 +38,7 @@ def inject_logged_in():
     
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html', threads = get_threads())
     
     
 @app.route('/login')
@@ -49,7 +48,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.clear()
-    return render_template('home.html')
+    return render_template('home.html', threads = get_threads())
 
     
 @app.route('/login/authorized')#the route should match the callback URL registered with the OAuth provider
@@ -70,7 +69,13 @@ def authorized():
         except Exception as inst:
             session.clear()
             message = "So sorry, an error has occured. You have not logged in."
-    return render_template('home.html')
+    return render_template('home.html', threads = get_threads())
+
+def get_threads():
+    toReturn = ''
+    for collection in db.find():
+        toReturn += Markup("<p>" + db.collection_name() + "</p>")
+    return toReturn
 
 @github.tokengetter #runs automatically. needed to confirm logged in
 def get_github_oauth_token():
