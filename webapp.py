@@ -72,7 +72,7 @@ def authorized():
 
 def get_threads():
     toReturn = ''
-    for collection in db.find():
+    for collection in db:
         toReturn += Markup("<p>" + db.collection_name() + "</p>")
     return toReturn
 
