@@ -72,8 +72,9 @@ def authorized():
 
 def get_threads():
     toReturn = ''
-    for collection in db:
-        toReturn += Markup("<p>" + db.collection_name() + "</p>")
+    myList = db.list_collection_names()
+    for collection in myList:
+        toReturn += Markup("<p>" + collection + "</p>")
     return toReturn
 
 @github.tokengetter #runs automatically. needed to confirm logged in
