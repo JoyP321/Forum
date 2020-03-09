@@ -70,11 +70,15 @@ def authorized():
             message = "So sorry, an error has occured. You have not logged in."
     return render_template('home.html', threads = get_threads())
 
+@app.route('/thread')
+def render_thread():
+    return render_template('thread.html', this.) //HERERERRERE
+
 def get_threads():
     toReturn = ''
     myList = db.list_collection_names()
     for collection in myList:
-        toReturn += Markup("<p>" + collection + "</p>")
+        toReturn += Markup("<a href= '/thread'>" + collection + "</a>")
     return toReturn
 
 @github.tokengetter #runs automatically. needed to confirm logged in
