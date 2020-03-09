@@ -1,7 +1,8 @@
 from flask import Flask, redirect, url_for, session, request, jsonify
 from flask_oauthlib.client import OAuth
 from flask import render_template
-import pymongo, Markup
+import Markup
+import pymongo
 import os
 import sys
 import pprint
