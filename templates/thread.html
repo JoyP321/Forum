@@ -1,1 +1,10 @@
+{% extends "layout.html" %}
 
+{% block title %}Welcome to the forum{% endblock %}
+
+{% block content %}
+  <h1>{{ threadName }}</h1>
+
+  {{ posts }}
+
+{% endblock %}
