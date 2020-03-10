@@ -4,7 +4,13 @@
 
 {% block content %}
   <h1>{{ threadName }}</h1>
-<p>
-  {{ posts }}
-</p>
+  <form action = '\threads', method= 'POST', id="myForm">
+    {{ posts }}
+  </form>
+
+  <script>
+    $( ":input" ).select(function() {
+      $( "#myForm" ).submit()
+    });
+  </script>
 {% endblock %}
