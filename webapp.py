@@ -72,7 +72,13 @@ def authorized():
 
 @app.route('/thread')
 def render_thread():
-    return render_template('thread.html', this.) //HERERERRERE
+    return render_template('thread.html', format_docs(this))
+
+def format_docs(collection):
+    toReturn = ''
+    for doc in collection.find():
+        toReturn += "/n" + doc
+    return toReturn
 
 def get_threads():
     toReturn = ''
