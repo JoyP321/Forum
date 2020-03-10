@@ -72,7 +72,7 @@ def authorized():
 
 @app.route('/thread')
 def render_thread():
-    return render_template('thread.html', format_docs(this))
+    return render_template('thread.html', format_docs(request.form('threadName'))
 
 def format_docs(collection):
     toReturn = ''
@@ -84,7 +84,7 @@ def get_threads():
     toReturn = ''
     myList = db.list_collection_names()
     for collection in myList:
-        toReturn += Markup("<form action='/thread', method='GET, POST'>" + collection + "<br>")
+        toReturn += Markup("<input type='radio' id='" +collection+ "'  name = 'threadName' value='" + collection + "'><br>")
     return toReturn
 
 @github.tokengetter #runs automatically. needed to confirm logged in
