@@ -84,7 +84,7 @@ def get_threads():
     toReturn = ''
     myList = db.list_collection_names()
     for collection in myList:
-        toReturn += Markup("<a href= '/thread'>" + collection + "</a>")
+        toReturn += Markup("<form action='/thread', method='GET, POST'>" + collection + "<br>")
     return toReturn
 
 @github.tokengetter #runs automatically. needed to confirm logged in
