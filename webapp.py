@@ -74,7 +74,7 @@ def authorized():
 def render_thread():
     return render_template('thread.html',threadName = request.form('threadName'), posts= format_docs(request.form('threadName'))
 
-def format_docs(collection):
+def format_docs(collection): // ERRRORORHERE
     toReturn = ''
     for doc in collection.find():
         toReturn += "/n" + doc
