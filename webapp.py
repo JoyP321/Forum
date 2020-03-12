@@ -72,13 +72,13 @@ def authorized():
 
 @app.route('/thread')
 def render_thread():
-    return render_template('thread.html',threadName = request.form('threadName'), posts= format_docs(request.form('threadName'))
+    return render_template('thread.html',threadName = request.form('threadName'), posts= "hello") #format_docs(request.form('threadName'))
 
-def format_docs(collection): // ERRRORORHERE
-    toReturn = ''
-    for doc in collection.find():
-        toReturn += "/n" + doc
-    return toReturn
+#def format_docs(myCollection): 
+    #toReturn = ''
+    #for doc in myCollection.find():
+        #toReturn += "/n" + doc
+    #return toReturn
 
 def get_threads():
     toReturn = ''
