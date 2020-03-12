@@ -74,7 +74,10 @@ def authorized():
 @app.route('/thread')
 def render_thread():
     print(request.args('threadName'))
-    return render_template('thread.html',threadName = request.args('threadName'), posts= format_docs(request.args('threadName'))
+    toReturn = ''
+    for doc in request.args('threadName').find():
+        toReturn += "/n" + doc
+    return render_template('thread.html',threadName = request.args('threadName'), posts= toReturn)
 
 
 def get_threads():
@@ -84,12 +87,6 @@ def get_threads():
         toReturn += Markup("<input type='radio' onclick='myFunction()' name = 'threadName' value='" + collection + "'>" + collection + "<br>")
     return toReturn
                           
-
-def format_docs(myCollection): 
-    toReturn = ''
-    for doc in myCollection.find():
-        toReturn += "/n" + doc
-    return toReturn
 
 @github.tokengetter #runs automatically. needed to confirm logged in
 def get_github_oauth_token():
