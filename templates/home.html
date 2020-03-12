@@ -5,7 +5,16 @@
 
 {% block content %}
   <h1>The Forum Welcomes You</h1>
+  <form action = '/thread', method= 'POST', id="myForm">
+    {{ threads }}
+  </form>
 
-  {{ threads }}
-
+  <script type="text/javascript">
+   $(document).ready(function(){
+    function myFunction() {
+      alert("You selected some text!");
+      $( "#myForm" ).submit();
+    }
+   });
+  </script>
 {% endblock %}
