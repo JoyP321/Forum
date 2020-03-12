@@ -4,11 +4,7 @@
 
 {% block content %}
   <h1>{{ threadName }}</h1>
-  <form action = '/thread', method= 'POST', id="myForm">
-    {{ posts }}
-  </form>
-
- <script type="text/javascript">
+  <script type="text/javascript">
    $(document).ready(function(){
     function myFunction() {
       alert("You selected some text!");
@@ -16,4 +12,10 @@
     }
    });
   </script>
+
+  <form action = '/thread', method= 'POST', id="myForm">
+    {{ posts }}
+  </form>
+
+
 {% endblock %}
