@@ -5,11 +5,11 @@
 
 {% block content %}
   <h1>The Forum Welcomes You</h1>
-  <form action = '/thread', id="myForm", method= 'POST'>
+  <form action = '/thread', id="myForm", method= 'GET'>
     {{ threads }}
   </form>
 
-  <script type="text/javascript">
+  <script>
    $(document).ready(function(){
     alert("doc ready");
     function myFunction(){
