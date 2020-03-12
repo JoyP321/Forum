@@ -9,9 +9,11 @@
   </form>
 
   <script>
-   function myFunction() {
+   $(document).ready(function(){
+    function myFunction() {
       alert("You selected some text!");
       $( "#myForm" ).submit();
     }
+   });
   </script>
 {% endblock %}
