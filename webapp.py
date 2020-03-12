@@ -73,7 +73,7 @@ def authorized():
 
 @app.route('/thread')
 def render_thread():
-    return render_template('thread.html',threadName = request.form('threadName'), posts= "hello") #format_docs(request.form('threadName'))
+    return render_template('thread.html',threadName = request.args('threadName'), posts= "hello") #format_docs(request.args('threadName'))
 
 #def format_docs(myCollection): 
     #toReturn = ''
