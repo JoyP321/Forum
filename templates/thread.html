@@ -9,8 +9,9 @@
   </form>
 
   <script>
-    $( ":input" ).select(function() {
-      $( "#myForm" ).submit()
-    });
+   function myFunction() {
+      alert("You selected some text!");
+      $( "#myForm" ).submit();
+    }
   </script>
 {% endblock %}
