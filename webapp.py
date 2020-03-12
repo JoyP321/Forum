@@ -68,6 +68,7 @@ def authorized():
         except Exception as inst:
             session.clear()
             message = "So sorry, an error has occured. You have not logged in."
+    print(get_threads())
     return render_template('home.html', threads = get_threads())
 
 @app.route('/thread')
