@@ -85,7 +85,7 @@ def get_threads():
     toReturn = ''
     myList = db.list_collection_names()
     for collection in myList:
-        toReturn += Markup("<input type='radio' id='" +collection+ "'  name = 'threadName' value='" + collection + "'><br>")
+        toReturn += Markup("<input type='radio' name = 'threadName' value='" + collection + "'>" + collection + "<br>")
     return toReturn
 
 @github.tokengetter #runs automatically. needed to confirm logged in
