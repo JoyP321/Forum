@@ -76,17 +76,19 @@ def render_thread():
     print(request.args('threadName'))
     return render_template('thread.html',threadName = request.args('threadName'), posts= format_docs(request.args('threadName'))
 
-def format_docs(myCollection): 
-    toReturn = ''
-    for doc in myCollection.find():
-        toReturn += "/n" + doc
-    return toReturn
 
 def get_threads():
     toReturn = ''
     myList = db.list_collection_names()
     for collection in myList:
         toReturn += Markup("<input type='radio' onclick='myFunction()' name = 'threadName' value='" + collection + "'>" + collection + "<br>")
+    return toReturn
+                          
+
+def format_docs(myCollection): 
+    toReturn = ''
+    for doc in myCollection.find():
+        toReturn += "/n" + doc
     return toReturn
 
 @github.tokengetter #runs automatically. needed to confirm logged in
