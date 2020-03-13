@@ -36,8 +36,10 @@ github = oauth.remote_app(
 def inject_logged_in():
     return {"logged_in":('github_token' in session)}
     
-@app.route('/',methods=['GET','POST']))
+@app.route('/',methods=['GET','POST'])
 def home():
+    if request.form[newThread] != null: #HEHHEHEHEHHEHEH
+        db.createCollection(request.form[newThread])
     return render_template('home.html', threads = get_threads())
     
 @app.route('/login')
@@ -71,7 +73,7 @@ def authorized():
     print(get_threads())
     return render_template('home.html', threads = get_threads())
 
-@app.route('/thread',methods=['GET','POST']))
+@app.route('/thread',methods=['GET','POST'])
 def render_thread():
     toReturn = ''
     for doc in db[request.args['threadName']].find():
