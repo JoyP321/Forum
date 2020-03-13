@@ -77,7 +77,8 @@ def render_thread():
     for doc in db[request.args['threadName']].find():
         print(doc)
         for val in doc:
-            toReturn += val
+            if val != '_id':
+                toReturn += doc[val]
     return render_template('thread.html', threadName = request.args['threadName'], posts= toReturn) 
 
 
