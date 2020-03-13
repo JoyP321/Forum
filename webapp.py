@@ -75,8 +75,9 @@ def authorized():
 def render_thread():
     toReturn = ''
     for doc in db[request.args['threadName']].find():
+        print(doc)
         for val in doc:
-            toReturn += "/n" + doc[val]
+            toReturn += val
     return render_template('thread.html', threadName = request.args['threadName'], posts= toReturn) 
 
 
