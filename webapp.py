@@ -74,6 +74,7 @@ def authorized():
 @app.route('/thread')
 def render_thread():
     toReturn = ''
+    session['threadnames'] = request.args('threadName')
     for doc in request.args('threadName').find():
         toReturn += "/n" + doc
     return render_template('thread.html', threadName = request.args('threadName'), posts= toReturn) 
