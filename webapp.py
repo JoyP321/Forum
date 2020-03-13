@@ -14,7 +14,7 @@ app.debug = True
 connection_string = os.environ["MONGO_CONNECTION_STRING"]
 db_name = os.environ["MONGO_DBNAME"]
 client = pymongo.MongoClient(connection_string)
-db = client['ForumData']
+db = client[db_name]
 
 app.secret_key = os.environ['SECRET_KEY'] 
 oauth = OAuth(app)
@@ -74,7 +74,7 @@ def authorized():
 @app.route('/thread')
 def render_thread():
     toReturn = ''
-    for doc in request.args('threadName').find():
+    for doc in db[request.args['threadName']].find():
         toReturn += "/n" + doc
     return render_template('thread.html', threadName = request.args('threadName'), posts= toReturn) 
 
