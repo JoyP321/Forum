@@ -76,7 +76,7 @@ def render_thread():
     toReturn = ''
     for doc in request.args('threadName').find():
         toReturn += "/n" + doc
-    return render_template('thread.html', threadName = request.args('threadName'), posts= toReturn) //Working here
+    return render_template('thread.html', threadName = request.args('threadName'), posts= toReturn) 
 
 
 def get_threads():
