@@ -38,7 +38,7 @@ def inject_logged_in():
     
 @app.route('/',methods=['GET','POST'])
 def home():
-    if request.form[newThread] != '': #HEHHEHEHEHHEHEH
+    if request.form[newThread] != null: #HEHHEHEHEHHEHEH
         db.createCollection(request.form[newThread])
     return render_template('home.html', threads = get_threads())
     
