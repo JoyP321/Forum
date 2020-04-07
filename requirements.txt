@@ -8,7 +8,6 @@ Flask
 Flask-OAuthlib
 Flask-PyMongo
 pymongo
-urlsafe
 dnspython
 
   
