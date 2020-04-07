@@ -1,13 +1,14 @@
 itsdangerous
 Jinja2
 MarkupSafe
-Werkzeug>=0.14
+Werkzeug==0.16.1
 wheel
 gunicorn
 Flask
 Flask-OAuthlib
 Flask-PyMongo
 pymongo
+urlsafe
 dnspython
 
   
