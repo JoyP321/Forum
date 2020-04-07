@@ -4,6 +4,7 @@ MarkupSafe
 Werkzeug>=0.14
 wheel
 gunicorn
+Flask
 Flask-OAuthlib
 Flask-PyMongo
 pymongo
