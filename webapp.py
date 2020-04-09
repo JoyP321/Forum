@@ -42,7 +42,7 @@ def home():
 
 @app.route('/threadAdded', methods=['GET','POST'])
 def threadAdded():
-    db.createCollection('hellllo')#request.form['newThread']) #HHEHEHHEHEHHEHEHHEHEH
+    db.createCollection('hellllo')#request.form['newThread']) 
     return render_template('home.html', threads = get_threads())
     
 @app.route('/login')
@@ -89,6 +89,8 @@ def render_thread():
 
 def get_threads():
     toReturn = ''
+    for post in data.find():
+        pprint.pprint(post)
     myList = db.list_collection_names()
     for collection in myList:
         toReturn += Markup("<input type='radio' onclick='myFunction()' name = 'threadName' value='" + collection + "'>" + collection + "<br>")
