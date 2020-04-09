@@ -89,7 +89,7 @@ def render_thread():
 
 def get_threads():
     toReturn = ''
-    for post in data.find():
+    for post in db.data.find():
         pprint.pprint(post)
     myList = db.list_collection_names()
     for collection in myList:
