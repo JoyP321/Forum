@@ -89,11 +89,12 @@ def render_thread():
 
 def get_threads():
     toReturn = ''
-    for post in db.data.find():
-        pprint.pprint(post)
-    myList = db.list_collection_names()
-    for collection in myList:
-        toReturn += Markup("<input type='radio' onclick='myFunction()' name = 'threadName' value='" + collection + "'>" + collection + "<br>")
+    myList[]
+    for thread in db.data.find({"type": "thread"})
+        mylist.append(thread['value'])
+    
+    for thread in myList:
+        toReturn += Markup("<input type='radio' onclick='myFunction()' name = 'threadName' value='" + thread + "'>" + thread + "<br>")
     return toReturn
                           
 
