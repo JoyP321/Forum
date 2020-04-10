@@ -42,7 +42,7 @@ def home():
 
 @app.route('/threadAdded', methods=['GET','POST'])
 def threadAdded():
-    if session['logged_in']: 
+    if logged_in: 
         db.data.insert_one(
             { "type": "thread", "value": request.form['newThread'] }
         )
@@ -65,20 +65,22 @@ def authorized():
     resp = github.authorized_response()
     if resp is None:
         session.clear()
-        message = 'Access denied: reason=' + request.args['error'] + ' error=' + request.args['error_description'] + ' full=' + pprint.pformat(request.args)      
+        #message = 'Access denied: reason=' + request.args['error'] + ' error=' + request.args['error_description'] + ' full=' + pprint.pformat(request.args)      
     else:
         try:
             session['github_token'] = (resp['access_token'], '')
             session['user_data'] = github.get('user').data
-            print(session['user_data']['login'])
-            if session['user_data']['public_repos'] >10:
-                message = 'you were successfully logged in as ' + session['user_data']['login'] +'.'
-            else:
-                message = 'you are not qualified to view the very secret data, but you may log in'
+            
+            #print(session['user_data']['login'])
+            #if session['user_data']['public_repos'] >10:
+            #    message = 'you were successfully logged in as ' + session['user_data']['login'] +'.'
+            #else:
+            #    message = 'you are not qualified to view the very secret data, but you may log in'
         except Exception as inst:
             session.clear()
-            message = "So sorry, an error has occured. You have not logged in."
-    print(get_threads())
+            #message = "So sorry, an error has occured. You have not logged in."
+    
+    #print(get_threads())
     return render_template('home.html', threads = get_threads())
 
 @app.route('/thread',methods=['GET','POST'])
