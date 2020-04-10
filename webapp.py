@@ -89,7 +89,7 @@ def render_thread():
 
 def get_threads():
     toReturn = ''
-    myList[]
+    myList = []
     for thread in db.data.find({"type": "thread"})
         mylist.append(thread['value']) #heheheheh
     
