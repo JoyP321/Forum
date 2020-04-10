@@ -42,7 +42,7 @@ def home():
 
 @app.route('/threadAdded', methods=['GET','POST'])
 def threadAdded():
-    if logged_in: 
+    if session['logged_in']: 
         db.data.insert_one(
             { "type": "thread", "value": request.form['newThread'] }
         )
