@@ -42,7 +42,11 @@ def home():
 
 @app.route('/threadAdded', methods=['GET','POST'])
 def threadAdded():
-    db.createCollection('hellllo')#request.form['newThread']) 
+    #db.createCollection('hellllo')#request.form['newThread']) 
+    db.data.insertOne(
+        { type: "thread",  value: request.form['newThread'] }
+    )
+
     return render_template('home.html', threads = get_threads())
     
 @app.route('/login')
