@@ -65,13 +65,13 @@ def authorized():
     resp = github.authorized_response()
     if resp is None:
         session.clear()
-        session['logged_in'] = false
+        session['logged_in'] = False
         #message = 'Access denied: reason=' + request.args['error'] + ' error=' + request.args['error_description'] + ' full=' + pprint.pformat(request.args)      
     else:
         try:
             session['github_token'] = (resp['access_token'], '')
             #session['user_data'] = github.get('user').data
-            session['logged_in'] = true
+            session['logged_in'] = True
             #print(session['user_data']['login'])
             #if session['user_data']['public_repos'] >10:
             #    message = 'you were successfully logged in as ' + session['user_data']['login'] +'.'
@@ -79,7 +79,7 @@ def authorized():
             #    message = 'you are not qualified to view the very secret data, but you may log in'
         except Exception as inst:
             session.clear()
-            session['logged_in'] = false
+            session['logged_in'] = False
             #message = "So sorry, an error has occured. You have not logged in."
     
     #print(get_threads())
