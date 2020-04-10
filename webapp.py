@@ -70,7 +70,7 @@ def authorized():
     else:
         try:
             session['github_token'] = (resp['access_token'], '')
-            #session['user_data'] = github.get('user').data
+            session['user_data'] = github.get('user').data
             session['logged_in'] = True
             #print(session['user_data']['login'])
             #if session['user_data']['public_repos'] >10:
