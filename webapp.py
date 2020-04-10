@@ -38,6 +38,8 @@ def inject_logged_in():
     
 @app.route('/',methods=['GET','POST'])
 def home():
+    if 'logged_in' not in session:
+        session['logged_in']= False
     return render_template('home.html', threads = get_threads())
 
 @app.route('/threadAdded', methods=['GET','POST'])
@@ -59,7 +61,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.clear()
-    session[logged_in]= False
+    session['logged_in']= False
     return render_template('home.html', threads = get_threads())
 
     
