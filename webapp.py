@@ -45,7 +45,9 @@ def threadAdded():
     if session['logged_in']: 
         db.data.insert_one(
             { "type": "thread", "value": request.form['newThread'] }
+            
         )
+        
         #potential message prompting login
         
     return render_template('home.html', threads = get_threads())
@@ -57,6 +59,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.clear()
+    session[logged_in]= False
     return render_template('home.html', threads = get_threads())
 
     
