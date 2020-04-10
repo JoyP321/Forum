@@ -44,7 +44,7 @@ def home():
 def threadAdded():
     #db.createCollection('hellllo')#request.form['newThread']) 
     db.data.insertOne(
-        { type: "thread",  value: request.form['newThread'] }
+        { "type": "thread", "value": request.form['newThread'] }
     )
 
     return render_template('home.html', threads = get_threads())
