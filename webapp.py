@@ -91,7 +91,7 @@ def get_threads():
     toReturn = ''
     myList = []
     for thread in db.data.find({"type": "thread"}):
-        mylist.append(thread['value']) 
+        myList.append(thread['value']) 
     
     for thread in myList:
         toReturn += Markup("<input type='radio' onclick='myFunction()' name = 'threadName' value='" + thread + "'>" + thread + "<br>")
