@@ -99,7 +99,7 @@ def render_thread():
     #        if val != '_id':
     #            toReturn += doc[val]
     for doc in db.data.find({"parentThread": request.args['threadName']}):
-        toReturn += Markup("<p>" + doc[value] + "</p>")
+        toReturn += Markup("<p>" + doc['value'] + "</p>")
     return render_template('thread.html', threadName = request.args['threadName'], posts = toReturn) 
 
 
