@@ -4,8 +4,11 @@
 
 {% block content %}
   <h1>{{ threadName }}</h1>
-   {{posts}} 
-
+  {{posts}} 
+  <form action = '/postAdded', method = 'POST'>
+    <input type="text" name="newPost">
+    <input type = 'submit' value="New Post">
+  </form>
  
 
 
