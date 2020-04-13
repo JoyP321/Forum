@@ -42,11 +42,23 @@ def home():
         session['logged_in']= False
     return render_template('home.html', threads = get_threads())
 
-@app.route('/threadAdded', methods=['GET','POST'])
+@app.route('/threadAdded', methods=['GET','POST']) 
 def threadAdded():
     if session['logged_in']: 
         db.data.insert_one(
             { "type": "thread", "value": request.form['newThread'] }
+            
+        )
+        
+        #potential message prompting login
+        
+    return render_template('home.html', threads = get_threads())
+
+@app.route('/postAdded', methods=['GET','POST']) #working here
+def postAdded():
+    if session['logged_in']: 
+        db.data.insert_one(
+            { "type": "post", "value": request.form['newPost'], "parentThread } #working here
             
         )
         
@@ -70,34 +82,20 @@ def authorized():
     resp = github.authorized_response()
     if resp is None:
         session.clear()
-        session['logged_in'] = False
-        #message = 'Access denied: reason=' + request.args['error'] + ' error=' + request.args['error_description'] + ' full=' + pprint.pformat(request.args)      
+        session['logged_in'] = False     
     else:
         try:
             session['github_token'] = (resp['access_token'], '')
             session['user_data'] = github.get('user').data
             session['logged_in'] = True
-            #print(session['user_data']['login'])
-            #if session['user_data']['public_repos'] >10:
-            #    message = 'you were successfully logged in as ' + session['user_data']['login'] +'.'
-            #else:
-            #    message = 'you are not qualified to view the very secret data, but you may log in'
         except Exception as inst:
             session.clear()
             session['logged_in'] = False
-            #message = "So sorry, an error has occured. You have not logged in."
-    
-    #print(get_threads())
     return render_template('home.html', threads = get_threads())
 
 @app.route('/thread',methods=['GET','POST'])
 def render_thread():
     toReturn = ''
-    #for doc in db[request.args['threadName']].find():
-    #    print(doc)
-    #    for val in doc:
-    #        if val != '_id':
-    #            toReturn += doc[val]
     for doc in db.data.find({"parentThread": request.args['threadName']}):
         toReturn += Markup("<p>" + doc['value'] + "</p>")
     return render_template('thread.html', threadName = request.args['threadName'], posts = toReturn) 
