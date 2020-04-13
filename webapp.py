@@ -93,12 +93,14 @@ def authorized():
 @app.route('/thread',methods=['GET','POST'])
 def render_thread():
     toReturn = ''
-    for doc in db[request.args['threadName']].find():
-        print(doc)
-        for val in doc:
-            if val != '_id':
-                toReturn += doc[val]
-    return render_template('thread.html', threadName = request.args['threadName'], posts= toReturn) 
+    #for doc in db[request.args['threadName']].find():
+    #    print(doc)
+    #    for val in doc:
+    #        if val != '_id':
+    #            toReturn += doc[val]
+    for doc in db.data.find({"parentThread": request.args['threadName']}):
+        toReturn += Markup("<p>" + doc[value] + "</p>")
+    return render_template('thread.html', threadName = request.args['threadName'], posts = toReturn) 
 
 
 def get_threads():
