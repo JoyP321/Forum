@@ -96,7 +96,7 @@ def authorized():
 @app.route('/thread',methods=['GET','POST'])
 def render_thread():
     toReturn = ''
-    doc = db.data.find({"thread": request.args['threadName']})
+    doc = db.data.find_one({"thread": request.args['threadName']})
     for myField in doc:
         if myField != "_id" and myField != "type":
             toReturn += Markup("<p>" + doc[myField] + "</p>")
