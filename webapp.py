@@ -46,7 +46,7 @@ def home():
 def threadAdded():
     if session['logged_in']: 
         db.data.insert_one(
-            { "type": "thread", "value": request.form['newThread'] }
+            { "type": "thread", "thread": request.form['newThread']}
             
         )
         
@@ -56,13 +56,13 @@ def threadAdded():
 
 @app.route('/postAdded', methods=['GET','POST']) #working here
 def postAdded():
-    if session['logged_in']: 
+    '''if session['logged_in']: 
         db.data.insert_one(
             { "type": "post", "value": request.form['newPost'], "parentThread } #working here
             
         )
         
-        #potential message prompting login
+        #potential message prompting login'''
         
     return render_template('home.html', threads = get_threads())
     
@@ -96,16 +96,18 @@ def authorized():
 @app.route('/thread',methods=['GET','POST'])
 def render_thread():
     toReturn = ''
-    for doc in db.data.find({"parentThread": request.args['threadName']}):
-        toReturn += Markup("<p>" + doc['value'] + "</p>")
+    doc = db.data.find({"thread": request.args['threadName']})
+    for myField in doc.find():
+        if myField != "_id" and myField != "type":
+            toReturn += Markup("<p>" + doc[myField] + "</p>")
     return render_template('thread.html', threadName = request.args['threadName'], posts = toReturn) 
 
 
 def get_threads():
     toReturn = ''
     myList = []
-    for thread in db.data.find({"type": "thread"}):
-        myList.append(thread['value']) 
+    for doc in db.data.find({"type": "thread"}):
+        myList.append(doc['thread']) 
     
     for thread in myList:
         toReturn += Markup("<input type='radio' onclick='myFunction()' name = 'threadName' value='" + thread + "'>" + thread + "<br>")
