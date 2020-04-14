@@ -59,8 +59,8 @@ def postAdded():
     number = len(db.data.find_one({"thread" : request.form['newThread']})) -2
     name = "post" + str(number)
     if session['logged_in']: 
-        query = {“thread”: request.form['newThread']} 
-        changes = {‘$set’: {name : request.form['newPost']}}
+        query = {"thread": request.form['newThread']} 
+        changes = {'$set': {name : request.form['newPost']}}
         data.update_one(query, changes)
 
         '''db.data.insert_one(
