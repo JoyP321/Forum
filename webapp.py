@@ -56,15 +56,21 @@ def threadAdded():
 
 @app.route('/postAdded', methods=['GET','POST']) #working here
 def postAdded():
-    '''if session['logged_in']: 
-        db.data.insert_one(
+    number = db.data.find_one({“thread”: request.form['newThread']}).len() -2
+    name = "post" + str(number)
+    if session['logged_in']: 
+        query = {“thread”: request.form['newThread']} 
+        changes = {‘$set’: {name : request.form['newPost']}}
+        data.update_one(query, changes)
+
+        '''db.data.insert_one(
             { "type": "post", "value": request.form['newPost'], "parentThread } #working here
             
-        )
+        )'''
         
         #potential message prompting login'''
         
-    return render_template('home.html', threads = get_threads())
+    return render_template('/thread')
     
 @app.route('/login')
 def login():   
