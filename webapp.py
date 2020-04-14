@@ -56,7 +56,7 @@ def threadAdded():
 
 @app.route('/postAdded', methods=['GET','POST']) #working here
 def postAdded():
-    number = db.data.find_one({“thread”: request.form['newThread']}).len() -2
+    number = len(db.data.find_one({"thread" : request.form['newThread']})) -2
     name = "post" + str(number)
     if session['logged_in']: 
         query = {“thread”: request.form['newThread']} 
