@@ -62,7 +62,7 @@ def postAdded():
     if session['logged_in']: 
         query = {"thread": session['activeThread']} #add active thread to the session so we can access from here and render thread
         changes = {'$set': {name : request.form['newPost']}}
-        data.update_one(query, changes)
+        db.data.update_one(query, changes)
 
         '''db.data.insert_one(
             { "type": "post", "value": request.form['newPost'], "parentThread } #working here
