@@ -64,9 +64,9 @@ def postAdded():
         changes = {'$set': {name : request.form['newPost']}}
         db.data.update_one(query, changes)
     else:
-        return redirect(url_for('login')) #jkzbxvksbiudvnf
-    #return redirect(url_for('render_thread'))
-    return render_template('home.html', threads = get_threads())
+        return redirect(url_for('login')) #key error on activeThread, possible issue with double return/redirect/render?
+    return redirect(url_for('render_thread'))
+
     
 @app.route('/login')
 def login():   
