@@ -103,7 +103,7 @@ def authorized():
 @app.route('/thread',methods=['GET','POST'])
 def render_thread():
     toReturn = ''
-    if request.form.get('threadName') != None:
+    if session['activeThread'] == "none":
         session['activeThread'] = request.args['threadName']
     doc = db.data.find_one({"thread": session['activeThread']})
     for myField in doc:
