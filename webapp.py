@@ -40,7 +40,7 @@ def inject_logged_in():
 def home():
     if 'logged_in' not in session:
         session['logged_in']= False
-    session[activeThread]= "none"
+    session['activeThread']= "none"
     return render_template('home.html', threads = get_threads())
 
 @app.route('/threadAdded', methods=['GET','POST']) 
@@ -57,10 +57,10 @@ def threadAdded():
 
 @app.route('/postAdded', methods=['GET','POST'])
 def postAdded():
-    number = len(db.data.find_one({"thread" : session[activeThread]})) -2
+    number = len(db.data.find_one({"thread" : session['activeThread']})) -2
     name = "post" + str(number)
     if session['logged_in']: 
-        query = {"thread": session[activeThread]} #add active thread to the session so we can access from here and render thread
+        query = {"thread": session['activeThread']} #add active thread to the session so we can access from here and render thread
         changes = {'$set': {name : request.form['newPost']}}
         data.update_one(query, changes)
 
@@ -104,12 +104,12 @@ def authorized():
 def render_thread():
     toReturn = ''
     if request.form.get('threadName') != None:
-        session[activeThread] = request.args['threadName']
-    doc = db.data.find_one({"thread": session[activeThread]})
+        session['activeThread'] = request.args['threadName']
+    doc = db.data.find_one({"thread": session['activeThread']})
     for myField in doc:
         if myField != "_id" and myField != "type" and myField != "thread":
             toReturn += Markup("<p>" + doc[myField] + "</p>")
-    return render_template('thread.html', threadName = session[activeThread], posts = toReturn) 
+    return render_template('thread.html', threadName = session['activeThread'], posts = toReturn) 
 
 
 def get_threads():
