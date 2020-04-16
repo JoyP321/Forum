@@ -65,7 +65,8 @@ def postAdded():
         db.data.update_one(query, changes)
     else:
         return redirect(url_for('login')) #jkzbxvksbiudvnf
-    return redirect(url_for('render_thread'))
+    #return redirect(url_for('render_thread'))
+    return render_template('home.html', threads = get_threads())
     
 @app.route('/login')
 def login():   
