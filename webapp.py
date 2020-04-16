@@ -60,13 +60,11 @@ def postAdded():
     number = len(db.data.find_one({"thread" : session['activeThread']})) -2
     name = "post" + str(number)
     if session['logged_in']: 
-        query = {"thread": session['activeThread']} #add active thread to the session so we can access from here and render thread
+        query = {"thread": session['activeThread']} 
         changes = {'$set': {name : request.form['newPost']}}
         db.data.update_one(query, changes)
-   
-        
-        #potential message prompting login'''
-        
+    else:
+        return redirect(url_for('login'))  
     return redirect(url_for('render_thread'))
     
 @app.route('/login')
