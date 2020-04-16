@@ -71,7 +71,7 @@ def postAdded():
         
         #potential message prompting login'''
         
-    return render_template('/thread')
+    return redirect(url_for("/thread"))
     
 @app.route('/login')
 def login():   
