@@ -48,10 +48,10 @@ def threadAdded():
     if session['logged_in']: 
         db.data.insert_one(
             { "type": "thread", "thread": request.form['newThread']}
-            
         )
+    else:
+        return redirect(url_for('login'))   
         
-        #potential message prompting login
         
     return render_template('home.html', threads = get_threads())
 
@@ -63,11 +63,7 @@ def postAdded():
         query = {"thread": session['activeThread']} #add active thread to the session so we can access from here and render thread
         changes = {'$set': {name : request.form['newPost']}}
         db.data.update_one(query, changes)
-
-        '''db.data.insert_one(
-            { "type": "post", "value": request.form['newPost'], "parentThread } #working here
-            
-        )'''
+   
         
         #potential message prompting login'''
         
