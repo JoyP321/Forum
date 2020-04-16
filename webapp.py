@@ -63,8 +63,7 @@ def postAdded():
         query = {"thread": session['activeThread']} 
         changes = {'$set': {name : request.form['newPost']}}
         db.data.update_one(query, changes)
-    else:
-        return redirect(url_for('login'))  
+ 
     return redirect(url_for('render_thread'))
     
 @app.route('/login')
