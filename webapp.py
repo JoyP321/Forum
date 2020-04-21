@@ -40,7 +40,7 @@ def inject_logged_in():
 def home():
     if 'logged_in' not in session:
         session['logged_in']= False
-    session['activeThread']= "none"
+    session['activeThread'] = "none"
     return render_template('home.html', threads = get_threads())
 
 @app.route('/threadAdded', methods=['GET','POST']) 
