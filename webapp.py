@@ -76,6 +76,7 @@ def login():
 def logout():
     session.clear()
     session['logged_in']= False
+    session['activeThread'] = "none"
     return render_template('home.html', threads = get_threads())
 
     
