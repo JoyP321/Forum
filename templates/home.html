@@ -5,14 +5,17 @@
 
 {% block content %}
   <h1>The Forum Welcomes You</h1>
-  <form action = '/thread', id="myForm", method= 'GET'>
-    {{ threads }}
-  </form>
 
-  <form action = '/threadAdded', method = 'POST'>
-    <input type="text" name="newThread">
-    <input type = 'submit' value="New Thread">
-  </form>
+  <div class= 'content'>
+    <form action = '/thread', id="myForm", method= 'GET'>
+      {{ threads }}
+    </form>
+
+    <form action = '/threadAdded', method = 'POST'>
+      <input type="text" name="newThread">
+      <input type = 'submit' value="New Thread">
+    </form>
+  </div>
 
   <script>
     function myFunction(){
