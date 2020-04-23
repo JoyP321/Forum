@@ -10,13 +10,13 @@
     <form action = '/thread', id="myForm", method= 'GET'>
       {{ threads }}
     </form>
+ 
+
+    <form action = '/threadAdded', method = 'POST'>
+      <input type="text" name="newThread">
+      <input type = 'submit' value="New Thread">
+    </form>
   </div>
-
-  <form action = '/threadAdded', method = 'POST'>
-    <input type="text" name="newThread">
-    <input type = 'submit' value="New Thread">
-  </form>
-
 
   <script>
     function myFunction(){
