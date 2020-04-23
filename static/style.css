@@ -39,10 +39,10 @@ p{
   border-color: #FFCB9A;
   border-width: medium;
   border-radius: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 10px;
-  margin bottom: 10px
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   
   
 }
