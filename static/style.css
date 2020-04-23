@@ -34,4 +34,17 @@ input[type=button], input[type=submit], input[type=reset] {
   cursor: pointer;
 }
 
+p{
+  border-style: solid;
+  border-color: #FFCB9A;
+  border-width: medium;
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 10px;
+  margin bottom: 10px
+  
+  
+}
+
 
