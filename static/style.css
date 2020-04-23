@@ -1,6 +1,5 @@
 body {
   background-color: #D1E8E2;
-  color: #2C3531;
 }
 
 h1{
@@ -9,7 +8,7 @@ h1{
 }
 
 input[type=text], select {
-  width: 25%;
+  width: 20%;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -18,7 +17,9 @@ input[type=text], select {
 
 
 .content{
-  padding-left: 10%;
+  padding-left: 5%;
+  font-size: medium;
+  color: #2C3531;
 }
 
 
