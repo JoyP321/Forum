@@ -8,8 +8,19 @@ h1{
   font-size: xx-large;
 }
 
-#navbar navbar-default{
-  background-color: #D9B08C;
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+#content{
+  padding-left: 10%;
 }
 
 
