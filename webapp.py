@@ -104,7 +104,7 @@ def render_thread():
     doc = db.data.find_one({"thread": session['activeThread']})
     for myField in doc:
         if myField != "_id" and myField != "type" and myField != "thread":
-            toReturn += Markup("<p>" + doc[myField] + "</p>")
+            toReturn += Markup("<p class = 'post' >" + doc[myField] + "</p>")
     return render_template('thread.html', threadName = session['activeThread'], posts = toReturn) 
 
 
